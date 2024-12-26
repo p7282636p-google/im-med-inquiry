@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Widget JavaScript bundle -->
+    <script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
+    <style>
+        /* Custom styles for the search input */
+        .search-input {
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        /* Style the Gen App Builder widget */
+        gen-search-widget {
+            --gen-search-widget-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --gen-search-widget-background-color: #ffffff;
+            --gen-search-widget-border-radius: 0.5rem;
+            --gen-search-widget-box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Search Interface</h1>
+            <p class="text-gray-600">Ask questions or search for information</p>
+        </header>
+
+        <!-- Search Container -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <!-- Search Input -->
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <!-- Search Icon -->
+                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <input 
+                    type="text" 
+                    id="searchWidgetTrigger"
+                    class="search-input block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-900 placeholder-gray-500"
+                    placeholder="Type your question here..."
+                >
+            </div>
+
+            <!-- Gen Search Widget -->
+            <gen-search-widget
+                configId="2d924a9b-8173-4e66-837e-130805f2a89f"
+                triggerId="searchWidgetTrigger">
+            </gen-search-widget>
+
+            <!-- Help Text -->
+            <div class="mt-4 text-sm text-gray-600">
+                <p>Tips:</p>
+                <ul class="list-disc ml-5 mt-2 space-y-1">
+                    <li>Ask specific questions for better results</li>
+                    <li>Use natural language in your queries</li>
+                    <li>Click on the search box or start typing to begin</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-600 text-sm">
+            <p>Powered by Google Gen App Builder</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add loading state to search input
+        const searchInput = document.getElementById('searchWidgetTrigger');
+        
+        searchInput.addEventListener('focus', () => {
+            searchInput.classList.add('ring-2', 'ring-blue-500', 'ring-opacity-50');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            searchInput.classList.remove('ring-2', 'ring-blue-500', 'ring-opacity-50');
+        });
+
+        // Optional: Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Press '/' to focus search
+            if (e.key === '/' && !searchInput.matches(':focus')) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            // Press 'Esc' to blur search
+            if (e.key === 'Escape' && searchInput.matches(':focus')) {
+                searchInput.blur();
+            }
+        });
+    </script>
+</body>
+</html>
