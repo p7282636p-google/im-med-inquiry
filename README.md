@@ -1,6 +1,8 @@
-# Ollama Chat Bot
+# IM-Med-Inquiry
 
-This project sets up a simple chat bot application using a frontend and backend. The frontend allows users to send messages, and the backend processes these messages using the `ollama` command.
+## Chatbot Integration
+
+This project integrates a chatbot using Ollama and RAG.
 
 ## Prerequisites
 
@@ -25,6 +27,20 @@ This project sets up a simple chat bot application using a frontend and backend.
     ./setup-and-run.sh
     ```
 
+### How to Run
+
+1. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+2. Start the development server:
+    ```sh
+    npm start
+    ```
+
+3. Open your browser and navigate to `http://localhost:3000` to see the chatbot UI.
+
 ## Usage
 
 1. In the web browser, type a message in the input box and click the "Send" button.
@@ -44,10 +60,11 @@ im-med-inquiry/
 ├── setup-and-run.sh
 ```
 
+### API Endpoint
+
+Ensure that the backend API endpoint `/api/chatbot` is properly set up to handle chatbot requests.
+
 ## Notes
 
 - Ensure the backend server is running before using the frontend.
 - The backend uses the `child_process` module to execute shell commands and interact with the `ollama` tool.
-````
-
-</file>
