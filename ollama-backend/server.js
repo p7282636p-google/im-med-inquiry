@@ -1,14 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import the cors middleware
 const { exec } = require('child_process');
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+app.use(cors()); // Enable CORS
 
 app.post('/chat', (req, res) => {
     const userMessage = req.body.message;
+    console.log(`Received message: ${userMessage}`); // Log the received message
     ensureModelDownloaded()
         .then(() => runOllamaCommand(userMessage))
         .then(botResponse => {
