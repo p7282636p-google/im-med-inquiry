@@ -17,7 +17,8 @@ if [ ! -f package.json ]; then
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
   }
 }
 EOL
