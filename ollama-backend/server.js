@@ -30,8 +30,8 @@ function ensureModelPulled() {
             if (error) {
                 return reject(error);
             }
-            if (!stdout.includes('ollama3.2')) { // Update the model name
-                exec('ollama pull ollama3.2', (error, stdout, stderr) => { // Use the pull command
+            if (!stdout.includes('llama3.2')) { // Update the model name
+                exec('ollama pull llama3.2', (error, stdout, stderr) => { // Use the pull command
                     if (error) {
                         return reject(error);
                     }
@@ -46,7 +46,7 @@ function ensureModelPulled() {
 
 function runOllamaCommand(message) {
     return new Promise((resolve, reject) => {
-        exec(`ollama run ollama3.2 --input "${message}"`, (error, stdout, stderr) => { // Update the model name
+        exec(`ollama run llama3.2 --input "${message}"`, (error, stdout, stderr) => { // Update the model name
             if (error) {
                 return reject(error);
             }
