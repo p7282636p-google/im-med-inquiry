@@ -46,7 +46,8 @@ function ensureModelPulled() {
 
 function runOllamaCommand(message) {
     return new Promise((resolve, reject) => {
-        exec(`ollama run llama3.2 --input "${message}"`, (error, stdout, stderr) => { // Update the model name
+        const command = `echo "${message}" | ollama run llama3.2`; // Correct the command syntax
+        exec(command, (error, stdout, stderr) => {
             if (error) {
                 return reject(error);
             }

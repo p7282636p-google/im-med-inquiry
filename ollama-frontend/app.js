@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendButton.addEventListener('click', () => {
         const message = chatInput.value;
         if (message.trim()) {
-            addMessage('User', message);
+            addMessage('user', message);
             chatInput.value = '';
             sendMessageToBackend(message);
         }
@@ -14,8 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addMessage(sender, message) {
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+        messageElement.classList.add('message', sender);
+
+        const bubbleElement = document.createElement('div');
+        bubbleElement.classList.add('bubble');
+        bubbleElement.textContent = message;
+
+        const timestampElement = document.createElement('div');
+        timestampElement.classList.add('timestamp');
+        timestampElement.textContent = new Date().toLocaleTimeString();
+
+        messageElement.appendChild(bubbleElement);
+        messageElement.appendChild(timestampElement);
         chatBox.appendChild(messageElement);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -30,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => response.json())
         .then(data => {
-            addMessage('Bot', data.response);
+            addMessage('bot', data.response);
         })
         .catch(error => {
             console.error('Error:', error);
