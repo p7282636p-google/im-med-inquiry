@@ -27,6 +27,9 @@ fi
 # Install dependencies
 npm install
 
+# Ensure cors is installed
+npm install cors
+
 # Start the backend server in the background
 echo "Starting the backend server..."
 npm start &
