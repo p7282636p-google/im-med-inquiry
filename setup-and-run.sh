@@ -1,13 +1,34 @@
 #!/bin/bash
 
-# Navigate to the backend directory and install dependencies
+# Navigate to the backend directory and create package.json if it doesn't exist
 echo "Setting up the backend..."
 cd ollama-backend
+
+if [ ! -f package.json ]; then
+  echo "Creating package.json..."
+  cat <<EOL > package.json
+{
+  "name": "ollama-backend",
+  "version": "1.0.0",
+  "description": "Backend for Ollama Chat Bot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
+EOL
+fi
+
+# Install dependencies
 npm install
 
 # Start the backend server in the background
 echo "Starting the backend server..."
-node server.js &
+npm start &
 
 # Navigate to the frontend directory
 cd ../ollama-frontend

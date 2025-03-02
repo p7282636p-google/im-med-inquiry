@@ -36,6 +36,7 @@ This project sets up a simple chat bot application using a frontend and backend.
 im-med-inquiry/
 ├── ollama-backend/
 │   ├── server.js
+│   ├── package.json
 ├── ollama-frontend/
 │   ├── index.html
 │   ├── styles.css
