@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sendMessageToBackend(message) {
-        fetch('http://localhost:3000/chat', {
+        fetch('http://localhost:3001/chat', { // Update the port number
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

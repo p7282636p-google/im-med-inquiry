@@ -4,7 +4,7 @@ const cors = require('cors'); // Import the cors middleware
 const { exec } = require('child_process');
 
 const app = express();
-const port = 3000;
+const port = 3001; // Change the port number
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS
@@ -15,6 +15,7 @@ app.post('/chat', (req, res) => {
     ensureModelDownloaded()
         .then(() => runOllamaCommand(userMessage))
         .then(botResponse => {
+            console.log(`Bot response: ${botResponse}`); // Log the bot response
             res.json({ response: botResponse });
         })
         .catch(error => {
@@ -29,8 +30,8 @@ function ensureModelDownloaded() {
             if (error) {
                 return reject(error);
             }
-            if (!stdout.includes('deepseek-r1:7b')) {
-                exec('ollama download deepseek-r1:7b', (error, stdout, stderr) => {
+            if (!stdout.includes('ollama3.2')) { // Update the model name
+                exec('ollama download ollama3.2', (error, stdout, stderr) => {
                     if (error) {
                         return reject(error);
                     }
@@ -45,7 +46,7 @@ function ensureModelDownloaded() {
 
 function runOllamaCommand(message) {
     return new Promise((resolve, reject) => {
-        exec(`ollama run deepseek-r1:7b --input "${message}"`, (error, stdout, stderr) => {
+        exec(`ollama run ollama3.2 --input "${message}"`, (error, stdout, stderr) => { // Update the model name
             if (error) {
                 return reject(error);
             }
